@@ -51,7 +51,7 @@ function userRoutes(fastify, options, done) {
   fastify.post("/upload", uploadFileOpts(fastify));
 
   //execute file
-  fastify.post("/execute/:id", executeFileOpts(fastify));
+  fastify.post("/execute", executeFileOpts(fastify));
 
   //get status
   fastify.post("/staus", statusFileOpts(fastify));

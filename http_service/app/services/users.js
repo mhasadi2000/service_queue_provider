@@ -119,9 +119,9 @@ exports.uploadFile = async (pgInstance, user, body, file) => {
   return { data: { upload_id: uploadInsert.id } };
 };
 
-exports.executeFile = async (params) => {
+exports.executeFile = async (body) => {
   var upload = await prisma.uploads.findFirst({
-    where: { id: params.id },
+    where: { id:  body.id },
   });
 
   if (upload.enable == 0) {

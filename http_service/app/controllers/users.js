@@ -16,7 +16,7 @@ exports.uploadFileReq = (fastify) => {
 
 exports.executeFileReq = (fastify) =>{
   return (req, reply) => {
-    return userService.executeFile(req.params);
+    return userService.executeFile(req.body);
   };
 }
 
