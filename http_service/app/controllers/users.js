@@ -1,6 +1,5 @@
 const userService = require("../services/users");
 
-const googleApiUrl = "https://www.googleapis.com/oauth2/v2/userinfo";
 
 exports.loginReq = (fastify) => {
   return (req, reply) => {
@@ -14,3 +13,16 @@ exports.uploadFileReq = (fastify) => {
     return userService.uploadFile(fastify.pg, req.user, req.body, req.file);
   };
 };
+
+exports.executeFileReq = (fastify) =>{
+  return (req, reply) => {
+    return userService.executeFile(req.params);
+  };
+}
+
+
+exports.statusFileReq = (fastify) =>{
+  return (req, reply) => {
+    return userService.statusFile(req.body);
+  };
+}

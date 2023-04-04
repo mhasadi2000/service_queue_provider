@@ -1,7 +1,7 @@
 {
-  "name": "tag_extension",
+  "name": "service_provider_queue",
   "version": "1.0.0",
-  "description": "extension for tagging different media in browser",
+  "description": "service provider",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/PISH-RUN/tag_extension_back"
+    "url": "https://github.com/mhasadi2000/service_queue_provider"
   },
   "author": "mohammad hossein asadi mhasadi2000@gmail.com",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/PISH-RUN/tag_extension_back/issues"
+    "url": "https://github.com/mhasadi2000/service_queue_provider/issue"
   },
-  "homepage": "https://github.com/PISH-RUN/tag_extension_back#readme",
+  "homepage": "https://github.com/mhasadi2000/service_queue_provider#readme",
   "dependencies": {
     "@fastify/cors": "8.1.0",
     "@fastify/env": "4.1.0",
@@ -26,7 +26,12 @@
     "@fastify/static": "6.5.0",
     "@fastify/swagger": "7.4.1",
     "@prisma/client": "^4.9.0",
-    "aws-sdk": "^2.1348.0",
+    "@aws-sdk/client-s3": "^3.301.0",
+    "@aws-sdk/s3-request-presigner": "^3.304.0",
+    "@aws-sdk/util-create-request": "^3.303.0",
+    "@aws-sdk/util-format-url": "^3.303.0",
+    "amqplib": "^0.10.3",
+    "aws-sdk": "^2.1345.0",
     "axios": "^0.27.2",
     "bcrypt": "^5.1.0",
     "class-validator": "^0.14.0",

@@ -1,11 +1,11 @@
 const path = require("path");
 
-const { errorHandler } = require("./app/middlewares/error-handler");
+const { errorHandler } = require("./http_service/app/middlewares/error-handler");
 const {
   NotAuthorizedError,
   RequestValidationError,
   NotFoundError,
-} = require("./app/errors");
+} = require("./http_service/app/errors");
 
 const multer = require("fastify-multer");
 
@@ -37,28 +37,9 @@ const start = async () => {
             type: "string",
             default: "development",
           },
-          JWT_SECRET: {
-            type: "string",
-          },
-          JWT_EXPIRES_IN: {
-            type: "string",
-            default: "3h",
-          },
           CROSS: {
             type: "string",
             default: "http://localhost:3000",
-          },
-          UPLOAD_MAX_SIZE: {
-            type: "number",
-            default: 5 * 1000 * 1024, //5 MB
-          },
-          IMAGE_FORMAT: {
-            type: "string",
-            default: ".(jpg|jpeg|png|gif|PNG|JPG|GIF|JPEG)$",
-          },
-          FILE_URL: {
-            type: "string",
-            default: "https://s3.ir-thr-at1.arvanstorage.ir",
           },
           SERVER_URL: {
             type: "string",
@@ -128,7 +109,7 @@ const start = async () => {
       return new RequestValidationError(errors);
     });
 
-    fastify.register(require("./app/routes/users"));
+    fastify.register(require("./http_service/app/routes/users"));
 
     fastify.setErrorHandler(errorHandler);
 

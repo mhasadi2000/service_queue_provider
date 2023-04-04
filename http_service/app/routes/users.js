@@ -1,9 +1,12 @@
 const userController = require("../controllers/users");
+const multer = require("fastify-multer");
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
+
 
 const {
   userpassSchema,
   OKResponse,
-  followersListResponse,
 } = require("../schemas/users");
 
 const loginOpts = (fastify) => {
@@ -21,8 +24,22 @@ const loginOpts = (fastify) => {
 const uploadFileOpts = (fastify) => {
   return {
     onRequest: [fastify.authenticate],
-    preHandler: [upload("image").single("image")],
+    preHandler: [upload.single("file")],
     handler: userController.uploadFileReq(fastify),
+  };
+};
+
+const executeFileOpts = (fastify) => {
+  return {
+    onRequest: [fastify.authenticate],
+    handler: userController.executeFileReq(fastify),
+  };
+};
+
+const statusFileOpts = (fastify) => {
+  return {
+    onRequest: [fastify.authenticate],
+    handler: userController.statusFileReq(fastify),
   };
 };
 
@@ -32,6 +49,12 @@ function userRoutes(fastify, options, done) {
 
   //upload file
   fastify.post("/upload", uploadFileOpts(fastify));
+
+  //execute file
+  fastify.post("/execute/:id", executeFileOpts(fastify));
+
+  //get status
+  fastify.post("/staus", statusFileOpts(fastify));
 
   done();
 }

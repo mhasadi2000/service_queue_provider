@@ -1,0 +1,52 @@
+{
+  "name": "service_provider_queue",
+  "version": "1.0.0",
+  "description": "service provider",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mhasadi2000/service_queue_provider"
+  },
+  "author": "mohammad hossein asadi mhasadi2000@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mhasadi2000/service_queue_provider/issue"
+  },
+  "homepage": "https://github.com/mhasadi2000/service_queue_provider#readme",
+  "dependencies": {
+    "@fastify/cors": "8.1.0",
+    "@fastify/env": "4.1.0",
+    "@fastify/postgres": "5.1.0",
+    "@fastify/static": "6.5.0",
+    "@fastify/swagger": "7.4.1",
+    "@prisma/client": "^4.9.0",
+    "@aws-sdk/client-s3": "^3.304.0",
+    "@aws-sdk/s3-request-presigner": "^3.304.0",
+    "@aws-sdk/util-create-request": "^3.303.0",
+    "@aws-sdk/util-format-url": "^3.303.0",
+    "amqplib": "^0.10.3",
+    "axios": "^0.27.2",
+    "class-validator": "^0.14.0",
+    "fastify": "^4.10.2",
+    "fastify-axios": "^1.2.6",
+    "fastify-multer": "^2.0.3",
+    "jsonwebtoken": "^9.0.0",
+    "lodash": "4.17.21",
+    "multer": "^1.4.5-lts.1",
+    "node-fetch": "3.2.10",
+    "nodemon": "2.0.19",
+    "path": "0.12.7",
+    "pg": "8.7.3",
+    "pg-native": "3.0.1",
+    "prisma": "^4.12.0",
+    "uuidv4": "6.2.13"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.13",
+    "typescript": "^4.9.4"
+  }
+}
