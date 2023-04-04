@@ -10,8 +10,6 @@ const amqp = require("amqplib");
 
 const AWS = require("aws-sdk");
 
-const { connect, Channel } = require("amqplib");
-
 const {
   NotAvailableError,
   BadRequestError,
