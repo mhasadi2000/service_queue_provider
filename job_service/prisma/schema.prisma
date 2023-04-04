@@ -1,0 +1,47 @@
+// This is your Prisma schema file
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("POSTGRES_URI")
+}
+
+model users {
+  id         Int      @id @default(autoincrement())
+  email      String   @unique
+  password   String?
+  created_at DateTime
+}
+
+model uploads {
+  id         Int      @id @default(autoincrement())
+  email      String
+  created_at DateTime
+  language   String
+  inputs     String[]
+  enable     Int
+  jobs       jobs[]
+}
+
+model results {
+  id            Int      @id @default(autoincrement())
+  job_id        Int
+  job           jobs     @relation(fields: [job_id], references: [id])
+  executed_date DateTime
+  output        String
+  status        String
+}
+
+model jobs {
+  id         Int       @id @default(autoincrement())
+  upload_id  Int
+  upload     uploads   @relation(fields: [upload_id], references: [id])
+  job        String
+  status     String
+  created_at DateTime
+  results    results[]
+}

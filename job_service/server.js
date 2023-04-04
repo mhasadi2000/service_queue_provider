@@ -1,11 +1,11 @@
 const path = require("path");
 
-const { errorHandler } = require("./http_service/app/middlewares/error-handler");
+const { errorHandler } = require("./middlewares/error-handler");
 const {
   NotAuthorizedError,
   RequestValidationError,
   NotFoundError,
-} = require("./http_service/app/errors");
+} = require("./errors");
 
 const multer = require("fastify-multer");
 
@@ -20,7 +20,7 @@ const start = async () => {
     fastify.register(require("@fastify/env"), {
       schema: {
         type: "object",
-        required: ["POSTGRES_URI", "JWT_SECRET"],
+        required: ["POSTGRES_URI"],
         properties: {
           POSTGRES_URI: {
             type: "string",
@@ -44,6 +44,21 @@ const start = async () => {
           SERVER_URL: {
             type: "string",
           },
+          END_POINT:{
+            type: "string"
+          },
+          ACCESS_KEY:{
+            type: "string"
+          },
+          SECRET_KEY:{
+            type: "string"
+          },
+          BUCKET_NAME: {
+            type: "string"
+          },
+          AMQP_URL:{
+            type: "string"
+          }
         },
       },
       dotenv: true,
@@ -79,21 +94,21 @@ const start = async () => {
 
     fastify.register(require("fastify-axios"));
 
-    fastify.register(require("@fastify/jwt"), {
-      secret: fastify.config.JWT_SECRET,
-      sign: {
-        expiresIn: fastify.config.JWT_EXPIRES_IN,
-      },
-    });
+    // fastify.register(require("@fastify/jwt"), {
+    //   secret: fastify.config.JWT_SECRET,
+    //   sign: {
+    //     expiresIn: fastify.config.JWT_EXPIRES_IN,
+    //   },
+    // });
 
 
-    fastify.decorate("authenticate", async function (request, reply) {
-      try {
-        await request.jwtVerify();
-      } catch (err) {
-        throw new NotAuthorizedError();
-      }
-    });
+    // fastify.decorate("authenticate", async function (request, reply) {
+    //   try {
+    //     await request.jwtVerify();
+    //   } catch (err) {
+    //     throw new NotAuthorizedError();
+    //   }
+    // });
 
     if (fastify.config.NODE_ENV === "development") {
       fastify.register(require("@fastify/swagger"), {
@@ -109,7 +124,7 @@ const start = async () => {
       return new RequestValidationError(errors);
     });
 
-    fastify.register(require("./http_service/app/routes/users"));
+    fastify.register(require("./index"));
 
     fastify.setErrorHandler(errorHandler);
 
