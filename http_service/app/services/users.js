@@ -17,6 +17,8 @@ const {
 } = require("../errors");
 const { hashPass, checkPass } = require("../utils/bcrypt");
 
+const s3_url = "https://service-provider.s3.ir-thr-at1.arvanstorage.ir/";
+
 /**
  *
  *
@@ -149,30 +151,9 @@ exports.executeFile = async (body) => {
 
   return {
     data: {
-      registered_id: upload.id,
+      registered_id: upload.id,body
     },
   };
-
-  /////
-  // connect('amqps://nllpexfc:UrsKVMWVeQ9wE2Gqy5_bw8r_H2JxwTmz@moose.rmq.cloudamqp.com/nllpexfc')
-  // .then(conn => {
-  //   return conn.createChannel();
-  // })
-  // .then(ch => {
-  //   const queueName = 'serpro';
-  //   return ch.assertQueue(queueName).then(qok => {
-  //     return ch.consume(queueName, msg => {
-  //       if (msg !== null) {
-  //         console.log(msg.content.toString());
-  //         ch.ack(msg);
-  //       }
-  //     });
-  //   });
-  // })
-  // .catch(err => {
-  //   console.error(err);
-  // });
-  /////
 };
 
 exports.statusFile = async (pgInstance, user) => {
@@ -188,7 +169,7 @@ exports.statusFile = async (pgInstance, user) => {
       status: row.status,
       execute_date: row.execute_date,
       download_url:
-        "https://service-provider.s3.ir-thr-at1.arvanstorage.ir/" + row.id,
+        s3_url + row.id,
     };
   });
 

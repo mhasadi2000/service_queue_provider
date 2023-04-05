@@ -23,6 +23,6 @@ exports.executeFileReq = (fastify) =>{
 
 exports.statusFileReq = (fastify) =>{
   return (req, reply) => {
-    return userService.statusFile(req.body);
+    return userService.statusFile(fastify.pg,req.user);
   };
 }

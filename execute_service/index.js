@@ -13,7 +13,7 @@ const { PrismaClient } = require("@prisma/client");
 const { BadRequestError } = require("./errors");
 const prisma = new PrismaClient();
 
-function codeRunner(data) {
+function executeCode(data) {
   console.log(data);
   const id = data.id;
   const config = {
@@ -81,7 +81,7 @@ function codeRunner(data) {
     });
 }
 
-function main() {
+function start() {
   setInterval(async () => {
     var jobs = await prisma.jobs.findMany({
       where: {
@@ -96,23 +96,10 @@ function main() {
  
     jobs.forEach((row) => {
         console.log("start runner");
-      codeRunner(row);
+        executeCode(row);
       console.log("after runner");
     });
-    // pool.query(
-    //   "SELECT * FROM jobs WHERE status = $1",
-    //   ["none"],
-    //   (err, result) => {
-    //     if (err) {
-    //       console.error(err);
-    //       return;
-    //     }
-    //     result.rows.forEach((row) => {
-    //       codeRunner(row);
-    //     });
-    //   }
-    // );
   }, 4000);
 }
 
-main();
+start();
