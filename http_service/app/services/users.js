@@ -158,11 +158,11 @@ exports.executeFile = async (body) => {
 
 exports.statusFile = async (pgInstance, user) => {
   const { rows: results } = await pgInstance.query(
-    "SELECT u.id, r.output, r.status, r.execute_date FROM uploads as u INNER JOIN jobs as j ON u.id = j.upload_id INNER JOIN results as r ON j.id = r.job  WHERE u.email = $1;",
+    "SELECT u.id, r.output, r.status, r.executed_date FROM uploads as u INNER JOIN jobs as j ON u.id = j.upload_id INNER JOIN results as r ON j.id = r.job_id  WHERE u.email = $1;",
     [user.user_id]
   );
 
-  const data = results.rows.map((row) => {
+  const data = results.map((row) => {
     return {
       upload_id: row.id,
       output: row.output,
