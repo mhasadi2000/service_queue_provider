@@ -54,7 +54,7 @@ function userRoutes(fastify, options, done) {
   fastify.post("/execute", executeFileOpts(fastify));
 
   //get status
-  fastify.post("/staus", statusFileOpts(fastify));
+  fastify.post("/status", statusFileOpts(fastify));
 
   done();
 }
