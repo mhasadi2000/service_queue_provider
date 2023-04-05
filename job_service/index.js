@@ -25,7 +25,7 @@ async function uploadedFileProcessor(id) {
     var upload = await prisma.uploads.findFirst({
         where: { id: id },
       });
-    if (!upload) throw new BadRequestError("error in finding upload")
+    if (upload.id == null) throw new BadRequestError("error in finding upload")
 
     const { language, inputs } = upload;
     const queryString = qs.stringify({
@@ -43,7 +43,7 @@ async function uploadedFileProcessor(id) {
         }
       });
 
-      if (!job) throw new BadRequestError("error in creating job")
+      if (job.id == null) throw new BadRequestError("error in creating job")
 
 
       var result = await prisma.results.create({
@@ -55,7 +55,7 @@ async function uploadedFileProcessor(id) {
         }
       });
 
-      if (!result) throw new BadRequestError("error in creating result")
+      if (result.id == null) throw new BadRequestError("error in creating result")
 
   });
 }

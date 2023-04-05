@@ -18,16 +18,16 @@
   },
   "homepage": "https://github.com/mhasadi2000/service_queue_provider#readme",
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.304.0",
+    "@aws-sdk/s3-request-presigner": "^3.304.0",
+    "@aws-sdk/util-create-request": "^3.303.0",
+    "@aws-sdk/util-format-url": "^3.303.0",
     "@fastify/cors": "8.1.0",
     "@fastify/env": "4.1.0",
     "@fastify/postgres": "5.1.0",
     "@fastify/static": "6.5.0",
     "@fastify/swagger": "7.4.1",
     "@prisma/client": "^4.9.0",
-    "@aws-sdk/client-s3": "^3.304.0",
-    "@aws-sdk/s3-request-presigner": "^3.304.0",
-    "@aws-sdk/util-create-request": "^3.303.0",
-    "@aws-sdk/util-format-url": "^3.303.0",
     "amqplib": "^0.10.3",
     "axios": "^0.27.2",
     "class-validator": "^0.14.0",
@@ -43,6 +43,7 @@
     "pg": "8.7.3",
     "pg-native": "3.0.1",
     "prisma": "^4.12.0",
+    "qs": "^6.11.1",
     "uuidv4": "6.2.13"
   },
   "devDependencies": {
